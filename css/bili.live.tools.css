@@ -1,0 +1,40 @@
+@-webkit-keyframes move-in-left {
+    0% {
+        left: 99%;
+    }
+    100% {
+        left: 0%;
+        visibility: hidden;
+    }
+}
+
+.danmu {
+    animation-name: move-in-left;
+    -webkit-animation-duration: 5s; /*动画持续的时间长*/
+    -webkit-animation-iteration-count: 1; /*动画循环播放的次数为1 infinite为无限次*/
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: both;
+    position: absolute;
+    width: 50%;
+    font-size: 12px;
+}
+
+.danmu-hidden {
+    visibility: hidden;
+    /*opacity:0;*!*/
+}
+
+.danmu-text {
+    left: 50%;
+    display: block;
+    position: absolute;
+    width: 48%;
+    height: 200px
+}
+
+.danmu-area {
+    width: 48%;
+    height: 200px;
+    border: 1px solid #F00;
+    position: absolute
+}
