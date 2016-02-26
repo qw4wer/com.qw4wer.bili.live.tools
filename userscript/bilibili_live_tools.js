@@ -16,6 +16,7 @@
 // @run-at      document-idle
 
 // @resource    danmuHtml https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/html/bili.live.full.screen.danmu.html
+// @resource    danmuHtml https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/html/bili.live.full.screen.danmu.html
 
 // ==/UserScript==
 //debugger;
@@ -128,6 +129,10 @@ function loadTools() {
         addDanmu: function () {
             vm.hasAddDanmu = !vm.hasAddDanmu;
         },
+        showToolPanel: function () {
+            vm.hasShowToolsPanel = !vm.hasShowToolsPanel;
+        },
+        hasShowToolsPanel: false,
         hasHiddenGift: false,
         hasFullScreen: false,
         hasHiddenSuperGift: false,
@@ -142,19 +147,22 @@ function loadTools() {
 //        })(i);
 //    }
 
-    vm.$watch("hasFullScreen",function(e){
+
+    vm.$watch("hasShowToolsPanel",function(){
+        e ? $(document.body).addClass("tools-panel") : $(document.body).removeClass("tools-panel");
+    }) ;
+    vm.$watch("hasFullScreen", function (e) {
         e ? $(document.body).addClass("full-win") : $(document.body).removeClass("full-win");
     });
-    vm.$watch("hasHiddenGift",function(e){
+    vm.$watch("hasHiddenGift", function (e) {
         e ? $(document.body).addClass("hidden-gift") : $(document.body).removeClass("hidden-gift");
     });
-    vm.$watch("hasHiddenSuperGift",function(e){
+    vm.$watch("hasHiddenSuperGift", function (e) {
         e ? $(document.body).addClass("hidden-supper-gift") : $(document.body).removeClass("hidden-supper-gift");
     });
-    vm.$watch("hasAddDanmu",function(e){
+    vm.$watch("hasAddDanmu", function (e) {
         e ? $(document.body).addClass("add-danmu") : $(document.body).removeClass("add-danmu");
     });
-
 
 
     //弹幕控制初始化
