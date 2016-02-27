@@ -73,6 +73,18 @@ body.hidden-supper-gift .super-gift-ctnr {
 }*/
 .tools {
     display: none;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 13px;
+    box-shadow: 0 0 2em .1em rgba(0,0,0,0.15);
+    -webkit-animation: move-in-left cubic-bezier(.22,.58,.12,.98) .4s;
+    animation: move-in-left cubic-bezier(.22,.58,.12,.98) .4s;
+    z-index: 10;
+    width: 300px;
+    padding: 10px;
+    top: -160%;
+    right: 10px;
 }
 
 /*按钮相关*/

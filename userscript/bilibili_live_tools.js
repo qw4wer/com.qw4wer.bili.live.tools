@@ -77,7 +77,7 @@ function loadTools() {
 
 
 
-    vm.$watch("hasShowToolsPanel",function(){
+    vm.$watch("hasShowToolsPanel",function(e){
         e ? $(document.body).addClass("tools-panel") : $(document.body).removeClass("tools-panel");
     }) ;
     vm.$watch("hasFullScreen", function (e) {
