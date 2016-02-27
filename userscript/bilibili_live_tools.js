@@ -48,6 +48,7 @@ function loadTools() {
     GM_addStyle(css);
     //加载按钮面板
     var panel = GM_getResourceText("panelHtml");
+    console.log(panel);
     $("#chat-ctrl-panel .btns").append(panel);
 
     var vm = avalon.define({
@@ -94,9 +95,9 @@ function loadTools() {
 
 
     //弹幕控制初始化
-    var prototypeSource = GM_getResourceText("danmuHtml");
-
-    console.log(prototypeSource);
+    //var prototypeSource = GM_getResourceText("danmuHtml");
+    //
+    //console.log(prototypeSource);
 
     avalon.scan();
 }
