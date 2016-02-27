@@ -66,6 +66,7 @@ function loadTools() {
             vm.hasAddDanmu = !vm.hasAddDanmu;
         },
         showToolPanel: function () {
+            debugger;
             vm.hasShowToolsPanel = !vm.hasShowToolsPanel;
         },
         hasShowToolsPanel: false,
