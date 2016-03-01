@@ -18,6 +18,7 @@
 // @resource    danmuHtml https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/html/bili.live.full.screen.danmu.html
 // @resource    panelHtml https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/html/bili.live.panel.button.html
 // @resource    css https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/css/bili.live.tools.css
+// @resource    utilsJs https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/js/com.qw4wer.utils.js
 
 // ==/UserScript==
 //debugger;
@@ -38,9 +39,6 @@ document = document || unsafeWindow.document;
 })();
 
 
-
-
-
 function loadTools() {
     console.log("tools start init");
     //加载css
@@ -48,8 +46,11 @@ function loadTools() {
     GM_addStyle(css);
     //加载按钮面板
     var panel = GM_getResourceText("panelHtml");
-    console.log(panel);
+
     $("#chat-ctrl-panel .btns").append(panel);
+
+    //加载页面方法
+    loadJs(GM_getResourceText("utilsJs"));
 
     var vm = avalon.define({
         $id: "tools_panel",
@@ -66,7 +67,6 @@ function loadTools() {
             vm.hasAddDanmu = !vm.hasAddDanmu;
         },
         showToolPanel: function () {
-            debugger;
             vm.hasShowToolsPanel = !vm.hasShowToolsPanel;
         },
         hasShowToolsPanel: false,
@@ -77,10 +77,9 @@ function loadTools() {
     });
 
 
-
-    vm.$watch("hasShowToolsPanel",function(e){
+    vm.$watch("hasShowToolsPanel", function (e) {
         e ? $(document.body).addClass("tools-panel") : $(document.body).removeClass("tools-panel");
-    }) ;
+    });
     vm.$watch("hasFullScreen", function (e) {
         e ? $(document.body).addClass("full-win") : $(document.body).removeClass("full-win");
     });
@@ -91,7 +90,7 @@ function loadTools() {
         e ? $(document.body).addClass("hidden-supper-gift") : $(document.body).removeClass("hidden-supper-gift");
     });
     vm.$watch("hasAddDanmu", function (e) {
-        e ? $(document.body).addClass("add-danmu") : $(document.body).removeClass("add-danmu");
+        e ? ($(document.body).addClass("add-danmu"),addSection(unsafeWindow.liveRoomFuncs, "addDanmu")) : $(document.body).removeClass("add-danmu");
     });
 
 
@@ -103,31 +102,16 @@ function loadTools() {
     avalon.scan();
 }
 
-function addSection(object, methodName) {
-    console.log('addSection');
-    sections = section({
-        //object: avalon.vmodels.chatListCtrl.$events.addDanmu[0],
-        object: object,
-        //methodName: 'handler',
-        methodName: methodName,
-        preposition: function (args) {
-            console.log('start');
-            console.dir(args);
-        },
-        postposition: function (args) {
-            //console.log('end');
-        }
-
-    });
-
-}
 /**
- * 弹幕处理
- * @param args
+ * 加载js 到页面
+ * @param jsStr
  */
-function danmuHandler(danmu) {
-    var danmuMsg = '';
-    if (danmu) {
-        danmuMsg = danmu.info[0];
-    }
+
+function loadJs(jsStr) {
+    var oHead = document.getElementsByTagName('HEAD')[0],
+        oScript = document.createElement('script');
+    oScript.type = 'text/javascript';
+    oScript.text = jsStr;
+    oHead.appendChild(oScript);
 }
+

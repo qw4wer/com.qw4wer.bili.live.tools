@@ -13,7 +13,18 @@ function createdDom(str) {
 
 }
 
+/**
+ * 加载js 到页面
+ * @param jsStr
+ */
 
+function loadJs(jsStr) {
+    var oHead = document.getElementsByTagName('HEAD')[0],
+        oScript = document.createElement('script');
+    oScript.type = 'text/javascript';
+    oScript.text = jsStr;
+    oHead.appendChild(oScript);
+}
 
 /**
  * 占位符格式化字符串
