@@ -80,22 +80,20 @@ function danmuPanelHandler() {
 function addDanmuPanel(options) {
     $().append(options.html);
 
-    addSection(unsafeWindow.liveRoomFuncs, "addDanmu",danmuHandler);
+    addSection(unsafeWindow.liveRoomFuncs, "addDanmu", danmuHandler);
 
 }
 
 function addSection(object, methodName, handel) {
     console.log('addSection');
     sections = section({
-        //object: avalon.vmodels.chatListCtrl.$events.addDanmu[0],
         object: object,
-        //methodName: 'handler',
         methodName: methodName,
         preposition: function (args) {
             executeFn(handel, [args]);
         },
         postposition: function (args) {
-            //console.log('end');
+
         }
 
     });
@@ -106,5 +104,5 @@ function addSection(object, methodName, handel) {
  * @param args
  */
 function danmuHandler(danmu) {
-    avalon.vmodels['danmuHandler'].$fire('monitorSend',danmu);
+    avalon.vmodels['danmuHandler'].$fire('monitorSend', danmu);
 }

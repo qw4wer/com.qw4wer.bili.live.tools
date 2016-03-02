@@ -19,7 +19,7 @@
 // @resource    panelHtml https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/html/bili.live.panel.button.html
 // @resource    css https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/css/bili.live.tools.css
 // @resource    utilsJs https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/js/com.qw4wer.utils.js
-
+// @resource    toolsJs https://raw.githubusercontent.com/qw4wer/com.qw4wer.bili.live.tools/master/js/bili.live.tools.js
 // ==/UserScript==
 //debugger;
 $ = $ || unsafeWindow.$;
