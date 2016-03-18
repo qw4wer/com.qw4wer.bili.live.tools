@@ -73,25 +73,30 @@ function loadTools() {
         hasHiddenGift: false,
         hasFullScreen: false,
         hasHiddenSuperGift: false,
-        hasAddDanmu: false
+        hasAddDanmu: false,
+        init:function(){
+            vm.$watch("hasShowToolsPanel", function (e) {
+                e ? $(document.body).addClass("tools-panel") : $(document.body).removeClass("tools-panel");
+            });
+            vm.$watch("hasFullScreen", function (e) {
+                e ? $(document.body).addClass("full-win") : $(document.body).removeClass("full-win");
+            });
+            vm.$watch("hasHiddenGift", function (e) {
+                e ? $(document.body).addClass("hidden-gift") : $(document.body).removeClass("hidden-gift");
+            });
+            vm.$watch("hasHiddenSuperGift", function (e) {
+                e ? $(document.body).addClass("hidden-supper-gift") : $(document.body).removeClass("hidden-supper-gift");
+            });
+            vm.$watch("hasAddDanmu", function (e) {
+                e ? ($(document.body).addClass("add-danmu"),addDanmuPanel()) : $(document.body).removeClass("add-danmu"),removeDanmuPanel();
+            });
+
+
+        }
     });
 
 
-    vm.$watch("hasShowToolsPanel", function (e) {
-        e ? $(document.body).addClass("tools-panel") : $(document.body).removeClass("tools-panel");
-    });
-    vm.$watch("hasFullScreen", function (e) {
-        e ? $(document.body).addClass("full-win") : $(document.body).removeClass("full-win");
-    });
-    vm.$watch("hasHiddenGift", function (e) {
-        e ? $(document.body).addClass("hidden-gift") : $(document.body).removeClass("hidden-gift");
-    });
-    vm.$watch("hasHiddenSuperGift", function (e) {
-        e ? $(document.body).addClass("hidden-supper-gift") : $(document.body).removeClass("hidden-supper-gift");
-    });
-    vm.$watch("hasAddDanmu", function (e) {
-        e ? ($(document.body).addClass("add-danmu"),addSection(unsafeWindow.liveRoomFuncs, "addDanmu")) : $(document.body).removeClass("add-danmu");
-    });
+
 
 
     //弹幕控制初始化

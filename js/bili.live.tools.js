@@ -36,10 +36,10 @@ function danmuPanelHandler() {
          * 处理flash传递的弹幕
          * @param danmu
          */
-        monitorSend: function (danmu) {
+        flagNativSend: function (danmu) {
             var danmuMsg = '';
             if (danmu) {
-                danmuMsg = danmu.info[0];
+                vm.sendHandel(danmu);
             }
 
         },
@@ -77,11 +77,15 @@ function danmuPanelHandler() {
     return vm;
 }
 
-function addDanmuPanel(options) {
-    $().append(options.html);
-
+function addDanmuPanel() {
+    $(body).append($(".danmu-panel"));
     addSection(unsafeWindow.liveRoomFuncs, "addDanmu", danmuHandler);
 
+}
+
+function removeDanmuPanel(){
+    $(".danmu-panel").remove();
+    sections.remove();
 }
 
 function addSection(object, methodName, handel) {
@@ -104,5 +108,5 @@ function addSection(object, methodName, handel) {
  * @param args
  */
 function danmuHandler(danmu) {
-    avalon.vmodels['danmuHandler'].$fire('monitorSend', danmu);
+    avalon.vmodels['danmuHandler'].$fire('flagNativSend', danmu);
 }
